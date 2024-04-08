@@ -99,10 +99,37 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Initialize variable to store the decimal value
-                return 0;
+                // If the array is empty, return 0 as there are no unique elements
+                if (nums.Length == 0)
+                {
+                    Console.WriteLine("The array is empty.");
+                    return 0;
+                }
+
+                // Initialize uniqueIndex at 1 since the first element is always unique
+                int k = 1;
+
+                // Iterate through the array starting from the second element
+                for (int i = 1; i < nums.Length; i++)
+                {
+                    // If the current element is not equal to the previous one, it's unique
+                    if (nums[i] != nums[i - 1])
+                    {
+                        // Move k to the next position in the k portion of the array
+                        nums[k] = nums[i];
+                        k++;
+                    }
+                }
+
+                // Print the modified array with unique elements
+                Console.Write("The modified array is: ");
+                for (int i = 0; i < k; i++)
+                {
+                    Console.Write(nums[i] + " ");
+                }
+                return k;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -134,10 +161,31 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return new List<int>();
+                // Initialize nonZero to keep track of the position to place the next non-zero element
+                int nonZero = 0;
+
+                // Iterate through the array
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    // If the current element is not zero, move it to the position indicated by nonZero
+                    if (nums[i] != 0)
+                    {
+                        nums[nonZero] = nums[i];
+                        nonZero++;
+                    }
+                }
+
+                // After all non-zero elements have been moved to the beginning,
+                // fill the remainder of the array with zeroes
+                for (int i = nonZero; i < nums.Length; i++)
+                {
+                    nums[i] = 0;
+                }
+
+                // Return the modified array with zeroes moved to the end
+                return nums;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -219,10 +267,36 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Initialize variable to store the decimal value
-                int decimalValue = 0;
+                // Initialize variables to track the maximum consecutive ones found and the current streak of ones.
+                // Tracks the current streak of consecutive ones.
+                int maxConsecutiveOnes = 0;
+                // Stores the maximum streak found so far.
+                int currentStreak = 0;
+
+                // Iterate over each element in the array.
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    // If the current element is 1, increment the streak counter.
+                    if (nums[i] == 1)
+                    {
+                        // Increment the current streak.
+                        maxConsecutiveOnes++;
+                        // Update currentMax if the current streak is the new maximum.
+                        if (maxConsecutiveOnes > currentStreak)
+                        {
+                            currentStreak = maxConsecutiveOnes;
+                        }
+                    }
+                    else
+                    {
+                        // If the current element is not 1, reset the streak counter.
+                        maxConsecutiveOnes = 0;
+                    }
+                }
+                // Return the maximum streak of consecutive ones found in the array.
+                return currentStreak;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -256,6 +330,26 @@ namespace ISM6225_Spring_2024_Assignment_2
             {
                 // Initialize variable to store the decimal value
                 int decimalValue = 0;
+
+                // Initialize variable to track the current power of two
+                int powerOfTwo = 1; 
+                while (binary > 0)
+                {
+                    // Extract the rightmost digit of the binary number
+                    int lastDigit = binary % 10;
+
+                    // Multiply the digit by the current power of two and add to the decimal value
+                    decimalValue += lastDigit * powerOfTwo;
+
+                    // Move to the next digit of the binary number
+                    binary /= 10;
+
+                    // Increment the power of two for the next iteration
+                    powerOfTwo *= 2; 
+                }
+
+                // Return the decimal representation of the binary number
+                return decimalValue; 
             }
             catch (Exception)
             {
@@ -292,8 +386,27 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Initialize variable to store the decimal value
-                return 0;
+
+                if (nums.Length < 2)
+                    return 0;
+
+
+                Array.Sort(nums);
+
+
+                int maxGap = 0;
+
+
+                for (int i = 1; i < nums.Length; i++)
+                {
+
+                    int gap = nums[i] - nums[i - 1];
+
+
+                    maxGap = Math.Max(maxGap, gap);
+                }
+
+                return maxGap;
             }
             catch (Exception)
             {
@@ -331,7 +444,21 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
+                // Sort the array in non-decreasing order.
+                Array.Sort(nums);
+
+                // Iterate from the end of the array towards the beginning.
+                for (int i = nums.Length - 1; i >= 2; i--)
+                {
+                    // Check if the current three consecutive elements can form a valid triangle.
+                    if (nums[i - 2] + nums[i - 1] > nums[i])
+                    {
+                        // If yes, return the perimeter of the triangle.
+                        return nums[i - 2] + nums[i - 1] + nums[i];
+                    }
+                }
+
+                // If no valid triangle can be formed, return 0.
                 return 0;
             }
             catch (Exception ex)
@@ -340,52 +467,88 @@ namespace ISM6225_Spring_2024_Assignment_2
             }
         }
 
-        /*
+    /*
 
-        Question:8
+    Question:8
 
-        Given two strings s and part, perform the following operation on s until all occurrences of the substring part are removed:
+    Given two strings s and part, perform the following operation on s until all occurrences of the substring part are removed:
 
-        Find the leftmost occurrence of the substring part and remove it from s.
-        Return s after removing all occurrences of part.
+    Find the leftmost occurrence of the substring part and remove it from s.
+    Return s after removing all occurrences of part.
 
-        A substring is a contiguous sequence of characters in a string.
+    A substring is a contiguous sequence of characters in a string.
 
- 
 
-        Example 1:
 
-        Input: s = "daabcbaabcbc", part = "abc"
-        Output: "dab"
-        Explanation: The following operations are done:
-        - s = "daabcbaabcbc", remove "abc" starting at index 2, so s = "dabaabcbc".
-        - s = "dabaabcbc", remove "abc" starting at index 4, so s = "dababc".
-        - s = "dababc", remove "abc" starting at index 3, so s = "dab".
-        Now s has no occurrences of "abc".
-        Example 2:
+    Example 1:
 
-        Input: s = "axxxxyyyyb", part = "xy"
-        Output: "ab"
-        Explanation: The following operations are done:
-        - s = "axxxxyyyyb", remove "xy" starting at index 4 so s = "axxxyyyb".
-        - s = "axxxyyyb", remove "xy" starting at index 3 so s = "axxyyb".
-        - s = "axxyyb", remove "xy" starting at index 2 so s = "axyb".
-        - s = "axyb", remove "xy" starting at index 1 so s = "ab".
-        Now s has no occurrences of "xy".
+    Input: s = "daabcbaabcbc", part = "abc"
+    Output: "dab"
+    Explanation: The following operations are done:
+    - s = "daabcbaabcbc", remove "abc" starting at index 2, so s = "dabaabcbc".
+    - s = "dabaabcbc", remove "abc" starting at index 4, so s = "dababc".
+    - s = "dababc", remove "abc" starting at index 3, so s = "dab".
+    Now s has no occurrences of "abc".
+    Example 2:
 
-        Constraints:
+    Input: s = "axxxxyyyyb", part = "xy"
+    Output: "ab"
+    Explanation: The following operations are done:
+    - s = "axxxxyyyyb", remove "xy" starting at index 4 so s = "axxxyyyb".
+    - s = "axxxyyyb", remove "xy" starting at index 3 so s = "axxyyb".
+    - s = "axxyyb", remove "xy" starting at index 2 so s = "axyb".
+    - s = "axyb", remove "xy" starting at index 1 so s = "ab".
+    Now s has no occurrences of "xy".
 
-        1 <= s.length <= 1000
-        1 <= part.length <= 1000
-        s​​​​​​ and part consists of lowercase English letters.
+    Constraints:
 
-        */
-        public static string RemoveOccurrences(string s, string part)
+    1 <= s.length <= 1000
+    1 <= part.length <= 1000
+    s​​​​​​ and part consists of lowercase English letters.
+
+    */
+    public static string RemoveOccurrences(string s, string part)
         {
             try
             {
                 // Convert the input string to a StringBuilder for efficient manipulation.
                 StringBuilder sb = new StringBuilder(s);
+
+                int partLength = part.Length;
+                bool found;
+
+                do
+                {
+                    found = false; // Reset flag for each pass.
+
+                    // Iterate over the string while it's long enough for 'part' to exist.
+                    for (int i = 0; i <= sb.Length - partLength; i++)
+                    {
+                        bool match = true; // Assume a match until proven otherwise.
+
+                        // Check if the current segment matches 'part'.
+                        for (int j = 0; j < partLength; j++)
+                        {
+                            if (sb[i + j] != part[j])
+                            {
+                                match = false; // Mismatch found, not a complete match.
+                                break; // Exit the inner loop early.
+                            }
+                        }
+
+                        if (match)
+                        {
+                            // Remove the found occurrence from the StringBuilder.
+                            sb.Remove(i, partLength);
+
+                            found = true; // Mark that we've made a removal in this pass.
+                            break; // Break to restart the search, as the string length has changed.
+                        }
+                    }
+                } while (found); // Repeat if an occurrence was removed.
+
+                // Return the modified string without 'part'.
+                return sb.ToString();
             }
             catch (Exception ex)
             {
