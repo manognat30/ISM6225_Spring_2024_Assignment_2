@@ -99,7 +99,7 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
+                // Initialize variable to store the decimal value
                 return 0;
             }
             catch (Exception)
@@ -142,7 +142,6 @@ namespace ISM6225_Spring_2024_Assignment_2
                 throw;
             }
         }
-
         /*
 
         Question 3:
@@ -220,8 +219,8 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return 0;
+                // Initialize variable to store the decimal value
+                int decimalValue = 0;
             }
             catch (Exception)
             {
@@ -251,13 +250,12 @@ namespace ISM6225_Spring_2024_Assignment_2
         1 <= num <= 10^9
 
         */
-
         public static int BinaryToDecimal(int binary)
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return 0;
+                // Initialize variable to store the decimal value
+                int decimalValue = 0;
             }
             catch (Exception)
             {
@@ -294,7 +292,7 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
+                // Initialize variable to store the decimal value
                 return 0;
             }
             catch (Exception)
@@ -329,7 +327,6 @@ namespace ISM6225_Spring_2024_Assignment_2
         1 <= nums[i] <= 106
 
         */
-
         public static int LargestPerimeter(int[] nums)
         {
             try
@@ -337,7 +334,7 @@ namespace ISM6225_Spring_2024_Assignment_2
                 // Write your code here and you can modify the return value according to the requirements
                 return 0;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -383,15 +380,14 @@ namespace ISM6225_Spring_2024_Assignment_2
         s​​​​​​ and part consists of lowercase English letters.
 
         */
-
         public static string RemoveOccurrences(string s, string part)
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return "";
+                // Convert the input string to a StringBuilder for efficient manipulation.
+                StringBuilder sb = new StringBuilder(s);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -420,8 +416,6 @@ namespace ISM6225_Spring_2024_Assignment_2
 
             return sb.ToString();
         }
-
-
         static string ConvertIListToArray(IList<int> input)
         {
             // Create an array to hold the strings in input
