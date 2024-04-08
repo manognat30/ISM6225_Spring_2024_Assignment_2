@@ -127,6 +127,7 @@ namespace ISM6225_Spring_2024_Assignment_2
                 {
                     Console.Write(nums[i] + " ");
                 }
+                Console.WriteLine();
                 return k;
             }
             catch (Exception ex)
@@ -232,8 +233,54 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return new List<IList<int>>();
+                // Sort the array to facilitate finding triplets and skipping duplicates.
+                Array.Sort(nums);
+                List<IList<int>> result = new List<IList<int>>();
+
+                // Iterate over each number in the array.
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    // Skip duplicate elements to avoid duplicate triplets.
+                    if (i > 0 && nums[i] == nums[i - 1])
+                        continue;
+
+                    // Initialize two pointers for the current element.
+                    int start = i + 1, end = nums.Length - 1;
+                    while (start < end)
+                    {
+                        // Calculate the sum of the current triplet.
+                        int sum = nums[i] + nums[start] + nums[end];
+
+                        // If the sum is less than zero, increase the sum by moving the left pointer to the right.
+                        if (sum < 0)
+                        {
+                            start++;
+                        }
+                        // If the sum is more than zero, decrease the sum by moving the right pointer to the left.
+                        else if (sum > 0)
+                        {
+                            end--;
+                        }
+                        else
+                        {
+                            // A valid triplet that sums up to zero has been found.
+                            result.Add(new List<int> { nums[i], nums[start], nums[end] });
+
+                            // Skip all duplicate values for the left pointer.
+                            while (start < end && nums[start] == nums[start + 1]) start++;
+                            // Skip all duplicate values for the right pointer.
+                            while (start < end && nums[end] == nums[end - 1]) end--;
+
+                            // Prepare for the next iteration to find new triplets.
+                            start++;
+                            end--;
+                        }
+                    }
+                }
+
+                // Return the list of found triplets.
+                return result;
+
             }
             catch (Exception)
             {
