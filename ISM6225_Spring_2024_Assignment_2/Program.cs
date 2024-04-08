@@ -130,7 +130,7 @@ namespace ISM6225_Spring_2024_Assignment_2
                 Console.WriteLine();
                 return k;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -186,7 +186,7 @@ namespace ISM6225_Spring_2024_Assignment_2
                 // Return the modified array with zeroes moved to the end
                 return nums;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -343,7 +343,7 @@ namespace ISM6225_Spring_2024_Assignment_2
                 // Return the maximum streak of consecutive ones found in the array.
                 return currentStreak;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -508,7 +508,7 @@ namespace ISM6225_Spring_2024_Assignment_2
                 // If no valid triangle can be formed, return 0.
                 return 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -597,7 +597,7 @@ namespace ISM6225_Spring_2024_Assignment_2
                 // Return the modified string without 'part'.
                 return sb.ToString();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
